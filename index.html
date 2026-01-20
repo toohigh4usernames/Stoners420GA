@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+  <title>Stoners420GA</title>
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- iOS install support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div>
+        <div class="title">Stoners420GA</div>
+        <div class="subtitle">Latest drops • Shop • Message</div>
+      </div>
+    </div>
+    <button id="installBtn" class="btn ghost" hidden>Install</button>
+  </header>
+
+  <main class="container">
+    <nav class="tabs">
+      <button class="tab active" data-view="home">Home</button>
+      <button class="tab" data-view="shop">Shop</button>
+      <button class="tab" data-view="messages">Messages</button>
+      <button class="tab" data-view="about">About</button>
+    </nav>
+
+    <section id="view-home" class="view">
+      <div class="card hero">
+        <h1>New Drops</h1>
+        <p>Tap a drop to view details and buy. Updates live when you edit your drops list.</p>
+        <div id="dropsGrid" class="grid"></div>
+      </div>
+    </section>
+
+    <section id="view-shop" class="view hidden">
+      <div class="card">
+        <div class="row">
+          <h2>Shop</h2>
+          <input id="search" class="input" placeholder="Search drops…" />
+        </div>
+        <div id="shopList" class="list"></div>
+      </div>
+    </section>
+
+    <section id="view-messages" class="view hidden">
+      <div class="card">
+        <h2>Message Stoners420GA</h2>
+        <p class="muted">Send a message inside the app. (We’ll connect this to free Firebase in step 4.)</p>
+
+        <form id="msgForm" class="form">
+          <input id="msgName" class="input" placeholder="Your name (optional)" maxlength="40" />
+          <input id="msgContact" class="input" placeholder="Your IG @ or phone/email (optional)" maxlength="60" />
+          <textarea id="msgText" class="input" placeholder="What do you need?" rows="4" required maxlength="600"></textarea>
+          <button class="btn" type="submit">Send Message</button>
+          <div id="msgStatus" class="status"></div>
+        </form>
+
+        <div class="divider"></div>
+        <p class="muted small">
+          Tip: If you want “live chat bubble” instead, we can do that too (also free).
+        </p>
+      </div>
+    </section>
+
+    <section id="view-about" class="view hidden">
+      <div class="card">
+        <h2>About</h2>
+        <p>Welcome to <b>Stoners420GA</b>. Stay tapped in for drops and updates.</p>
+
+        <div class="divider"></div>
+        <p class="muted small">Install: iPhone → Share → “Add to Home Screen”. Android → “Install app”.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="muted small">© <span id="year"></span> Stoners420GA</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
+    }
+  </script>
+</body>
+</html>
